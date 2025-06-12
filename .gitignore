@@ -70,3 +70,13 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+/Assets/Imports
+/Assets/Prefabs
+/Assets/XR
+/Assets/XRI
+/Assets/Editor
+/Assets/MetaXR
+/Assets/Oculus
+/Assets/Resources
+/Assets/Light Bake Settings
+/Assets/PrefabLightMappings
