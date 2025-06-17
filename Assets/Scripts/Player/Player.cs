@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
 
     private bool _isDead;
 
+    [SerializeField] private PlayerDeadController _playerDeadController;
+
     private void Awake()
     {
         _postProcessVolume = GetComponentInChildren<Volume>();
@@ -42,8 +44,6 @@ public class Player : MonoBehaviour
 
             if (_eyeRayTimer >= _eyeRayTimerMax)
             {
-                // 고스트의 상태 추적으로 변경
-
                 BaseMonster ghost = hit.collider.GetComponent<BaseMonster>();
                 if (ghost != null && !(ghost.CurrentState is TraceState))
                 {
@@ -63,20 +63,21 @@ public class Player : MonoBehaviour
     private void UpdateVignette()
     {
         float ratio = Mathf.Clamp01(_eyeRayTimer / _eyeRayTimerMax);
-        _vignette.intensity.Override(Mathf.Lerp(0f, 0.6f, ratio));
+        _vignette.intensity.Override(Mathf.Lerp(0f, 1f, ratio));
     }
 
     public void Die()
     {
         Debug.Log("Player Dead");
         _isDead = true;
+        DoDeathProcess();
     }
 
     private void DoDeathProcess()
     {
         if (_isDead)
         {
-            // 조종 불가
+            _playerDeadController.TriggerDeathSequence();
         }
     }
 }
