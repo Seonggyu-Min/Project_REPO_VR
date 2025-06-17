@@ -34,14 +34,20 @@ public class CartMoneyIndicator : MonoBehaviour
     {
         if ((_propLayer.value & (1 << other.gameObject.layer)) == 0) return;
 
-        _propInfos.Add(other.gameObject.GetComponent<PropInfos>());
+        PropInfos prop = other.gameObject.GetComponent<PropInfos>();
+        if (prop == null) return;
+
+        _propInfos.Add(prop);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if ((_propLayer.value & (1 << other.gameObject.layer)) == 0) return;
 
-        _propInfos.Remove(other.gameObject.GetComponent<PropInfos>());
+        PropInfos prop = other.gameObject.GetComponent<PropInfos>();
+        if (prop == null) return;
+
+        _propInfos.Remove(prop);
     }
 
     public void DeletePropListWhenDestroyed(PropInfos prop)
