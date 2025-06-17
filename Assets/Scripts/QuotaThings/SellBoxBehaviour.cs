@@ -65,7 +65,7 @@ public class SellBoxBehaviour : MonoBehaviour
 
         GameManager.Instance.QuotaManager.AddCurrentQuota(sum);
 
-        while (_pushObj.transform.position.y < 9f)
+        while (_pushObj.transform.position.y < 6.5f)
         {
             _pushObj.transform.position += Vector3.up * Time.deltaTime * 5f;
             yield return null;
