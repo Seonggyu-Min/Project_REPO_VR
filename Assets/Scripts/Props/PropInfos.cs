@@ -5,10 +5,11 @@ using UnityEngine;
 public class PropInfos : MonoBehaviour
 {
     [SerializeField] private bool _isSmall;
-    
-    // 디버그용 직렬화, 추후 삭제
-    [SerializeField] private int _maxPrice;
-    [SerializeField] private int _currentPrice;
+
+    private int _maxPrice;
+    private int _currentPrice;
+
+    [SerializeField] private CartMoneyIndicator _cartMoneyIndicator;
 
     public int MaxPrice => _maxPrice;
     public int CurrentPrice => _currentPrice;
@@ -20,6 +21,7 @@ public class PropInfos : MonoBehaviour
     }
     private void OnDestroy()
     {
+        _cartMoneyIndicator.DeletePropListWhenDestroyed(this);
         PropPriceRegisterer.Unregister(this);
     }
 
